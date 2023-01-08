@@ -21,18 +21,17 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
-
     public void add(User user) {
         userDao.add(user);
     }
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
-    public List<User> listUsers() {
+    @Transactional(readOnly = true)
+    public List<User> getUserList() {
         return userDao.listUsers();
     }
 
     @Override
-    public User getUser(Car car) {
+    public User getUserFromCar(Car car) {
         return userDao.getUser(car);
 
     }
