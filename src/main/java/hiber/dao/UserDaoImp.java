@@ -13,29 +13,32 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
+    private final SessionFactory sessionFactory;
 
-   @Autowired
-   private SessionFactory sessionFactory;
+    public UserDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-   @Override
-   public void add(User user) {
-      sessionFactory.getCurrentSession().save(user);
-   }
 
-   @Override
-   @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-      return query.getResultList();
-   }
+    @Override
+    public void add(User user) {
+        sessionFactory.getCurrentSession().save(user);
+    }
 
-   @Override
-   public User getUser(Car car) {
-      String hql = "from User where car.model =:model and car.series =:series";
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql);
-      query.setParameter("model", car.getModel()).setParameter("series", car.getSeries());
-      return query.setMaxResults(1).getSingleResult();
-   }
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> listUsers() {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.getResultList();
+    }
+
+    @Override
+    public User getUser(Car car) {
+        String hql = "from User where car.model =:model and car.series =:series";
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("model", car.getModel()).setParameter("series", car.getSeries());
+        return query.setMaxResults(1).getSingleResult();
+    }
 
 
 }

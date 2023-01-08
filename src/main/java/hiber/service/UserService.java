@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface UserService {
     void add(User user);
-    List<User> listUsers();
+
+    List<User> listUsers(); // на что его переименовать ? и зачем ?
 
     User getUser(Car car);
 }
