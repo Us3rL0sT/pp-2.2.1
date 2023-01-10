@@ -10,16 +10,14 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "model")
-
     private String model;
-    @Column(name = "series")
 
+    @Column(name = "series")
     private int series;
 
-    public Car() {
-
-    }
+    public Car() {}
 
     public Car(String model, int series) {
         this.model = model;

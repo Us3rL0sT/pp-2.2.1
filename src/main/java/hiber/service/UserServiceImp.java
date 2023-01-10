@@ -18,20 +18,22 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
+    @Transactional
     @Override
     public void add(User user) {
         userDao.add(user);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<User> getUserList() {
         return userDao.getUserList();
     }
 
+    @Transactional
     @Override
     public User getUserFromCar(Car car) {
         return userDao.getUser(car);
-
     }
 
 }
