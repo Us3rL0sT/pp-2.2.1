@@ -10,6 +10,7 @@ public interface UserService {
     void add(User user);
 
     List<User> getUserList();
-
+    
+    @Transactional(readOnly = true)
     User getUserFromCar(Car car);
 }
